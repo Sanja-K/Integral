@@ -12,8 +12,8 @@ public class Main {
         int border_top = 0;
         int border_bottom = 0;
         double step = 0;
-        double result = 0;
-        long startTime = 0;
+        double result ;
+        long startTime ;
 
         Scanner sc = new Scanner(System.in);
 
@@ -34,12 +34,15 @@ public class Main {
 
         startTime = System.currentTimeMillis();
 
-        if ((result = computationIntegrals(border_top, border_bottom, step)) == -1){
+        if(border_bottom >= border_top || border_top <= 0 || border_bottom < 0
+                || step <= 0 || step > (border_top - border_bottom) ){
             System.out.println("Введены некоректные данные ");
-            return ;
+            return;
+        }else {
+           result = computationIntegrals(border_top, border_bottom, step);
         }
 
-        System.out.println(result + " " + (System.currentTimeMillis() - startTime));
+        System.out.println(result + " " +" Время рассчёта - " + (System.currentTimeMillis() - startTime) +" ml.sec");
 
     }
 
@@ -47,11 +50,6 @@ public class Main {
     //N*√x
     private static double computationIntegrals(double border_t, double border_b, double step){
         double sum = 0;
-
-        if(border_b >= border_t || border_t == 0 || border_b < 0 ||
-                border_t < 0 || step <= 0 || step > (border_t-border_b) ){
-            return -1;
-        }
 
         double resultOne = number_version*Math.sqrt( border_b);
 
